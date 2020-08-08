@@ -4,16 +4,27 @@ import java.util.Scanner;
 
 public class Tester {
     public static void main(String[] args) {
-        System.out.println("Please enter number of tickets:");
-        Scanner scanner = new Scanner(System.in);
-        int totalTickets = scanner.nextInt();
-        System.out.println("How many round-trip tickets:");
-        int roundTripTickets = scanner.nextInt();
-        Tickets tickets = new Tickets(totalTickets, roundTripTickets);
-        if (tickets.checkOK()) {
-            System.out.println("Total tickets: " + tickets.getTotalTickets());
-            System.out.println("Round-trip: " + tickets.getRoundTripTickets());
-            System.out.println("Total: " + tickets.getTotalPrice());
+        int totalTickets = 0;
+        try {
+            while (true) {
+                System.out.println("\nPlease enter number of tickets:");
+                Scanner scanner = new Scanner(System.in);
+                totalTickets = scanner.nextInt();
+                if (totalTickets == -1) {
+                    System.out.println("Bye !!");
+                    break;
+                }
+                System.out.println("How many round-trip tickets:");
+                int roundTripTickets = scanner.nextInt();
+                Tickets tickets = new Tickets(totalTickets, roundTripTickets);
+                if (tickets.checkOK()) {
+                    System.out.println("Total tickets: " + tickets.getTotalTickets());
+                    System.out.println("Round-trip: " + tickets.getRoundTripTickets());
+                    System.out.println("Total: " + tickets.getTotalPrice());
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error input  , Bye !! ");
         }
     }
 }

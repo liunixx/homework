@@ -5,15 +5,27 @@ import java.util.*
 fun main() {
     var numTotal = 0
     var numRoundTrip=0
-    println("Please enter number of tickets: ")
-    numTotal = Scanner(System.`in`).nextInt()
-    println("How many round-trip tickets: ")
-    numRoundTrip=Scanner(System.`in`).nextInt()
-    val trainTickets = TrainTickets(numTotal, numRoundTrip)
-    if(trainTickets.checkOk()) {
-        println("Total tickets: ${trainTickets.getTotalTickets()}")
-        println("Round-trip: ${trainTickets.getRoundTripTotal()}")
-        println("Total: ${trainTickets.getTotalPrice()}")
+    // numTotal = Scanner(System.`in`).nextInt()
+    try {
+        while (true) {
+            println("\nEnter number of total tickets: ")
+            numTotal = readLine()!!.toInt()
+            if (numTotal == -1) {
+                println("Bye !!")
+                break
+            }
+            println("How many round-trip tickets: ")
+            // numRoundTrip = Scanner(System.`in`).nextInt()
+            numRoundTrip = readLine()!!.toInt()
+            val trainTickets = TrainTickets(numTotal, numRoundTrip)
+            if (trainTickets.checkOk()) {
+                println("Total tickets: ${trainTickets.getTotalTickets()}")
+                println("Round-trip: ${trainTickets.getRoundTripTotal()}")
+                println("Total: ${trainTickets.getTotalPrice()}")
+            }
+        }
+    } catch (e:Exception) {
+        println("Error input , Bye !!")
     }
 }
 
